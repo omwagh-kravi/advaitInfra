@@ -12,10 +12,10 @@ function scrollToId(id) {
 }
 
 export function Hero({ progress = 0 }) {
-  const exit = rangeProgress(progress, 0.12, 0.22);
+  const exit = rangeProgress(progress, 0.08, 0.13);
   const style = {
     opacity: 1 - exit,
-    transform: `translateY(${-44 * exit}px) scale(${1 - 0.02 * exit})`,
+    transform: `translateY(${-40 * exit}px) scale(${1 - 0.015 * exit})`,
     visibility: exit >= 1 ? 'hidden' : 'visible',
     pointerEvents: exit > 0.85 ? 'none' : 'auto'
   };
@@ -61,8 +61,9 @@ export function Hero({ progress = 0 }) {
         className="absolute bottom-7 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-white/50"
         onClick={() => scrollToId('stats')}
         style={{
-          opacity: 1 - rangeProgress(progress, 0.08, 0.18),
-          visibility: progress >= 0.18 ? 'hidden' : 'visible'
+          opacity: 1 - rangeProgress(progress, 0.08, 0.13),
+          visibility: progress >= 0.13 ? 'hidden' : 'visible',
+          pointerEvents: progress >= 0.13 ? 'none' : 'auto'
         }}
       >
         Scroll

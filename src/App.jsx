@@ -25,7 +25,7 @@ function overlayStyle(progress, start, holdStart, holdEnd, end) {
   const enter = rangeProgress(progress, start, holdStart);
   const exit = rangeProgress(progress, holdEnd, end);
   const opacity = Math.min(enter, 1 - exit);
-  const y = 28 * (1 - enter) - 20 * exit;
+  const y = 30 * (1 - enter) - 20 * exit;
   return {
     opacity,
     transform: `translateY(${y}px)`,
@@ -33,6 +33,8 @@ function overlayStyle(progress, start, holdStart, holdEnd, end) {
     pointerEvents: 'none'
   };
 }
+
+const HERO_EXIT_END = 0.13;
 
 function AssemblyChapter() {
   const progress = useScrollProgress('build-story');
@@ -70,7 +72,7 @@ function AssemblyChapter() {
         {!ready && !useFallback && <Loader ready={ready} />}
 
         <div className="relative z-30 flex h-full items-center">
-          <Hero progress={progress} />
+          {progress < HERO_EXIT_END && <Hero progress={progress} />}
         </div>
 
         <ConstructionStageOverlay progress={progress} />
@@ -97,13 +99,13 @@ function Loader({ ready }) {
 
 function ConstructionStageOverlay({ progress }) {
   const stages = [
-    { start: 0.04, holdStart: 0.1, holdEnd: 0.14, end: 0.18, label: '01 / Foundation', title: 'Every Structure\nStarts Here.', copy: 'Precision foundations establish\nthe geometry for everything above.' },
-    { start: 0.16, holdStart: 0.2, holdEnd: 0.28, end: 0.32, label: '02 / Columns', title: 'Steel Rises.', copy: 'Primary columns lock into\nthe foundation system.' },
-    { start: 0.3, holdStart: 0.34, holdEnd: 0.43, end: 0.47, label: '03 / Primary Frame', title: 'The Form Takes Shape.', copy: 'Columns and tapered rafters create\nthe repeating PEB portal frame.' },
-    { start: 0.45, holdStart: 0.49, holdEnd: 0.58, end: 0.62, label: '04 / Structural Grid', title: 'The System Connects.', copy: 'Purlins, girts and bracing connect\neach primary structural frame.' },
-    { start: 0.6, holdStart: 0.64, holdEnd: 0.7, end: 0.74, label: '05 / Scale', title: 'Engineered In Repetition.', copy: 'Every frame extends the structure,\ncreating strength through precision.' },
-    { start: 0.72, holdStart: 0.76, holdEnd: 0.82, end: 0.86, label: '06 / Envelope', title: 'The Structure\nCloses.', copy: 'Roofing and wall systems transform\nthe steel skeleton into architecture.' },
-    { start: 0.84, holdStart: 0.88, holdEnd: 0.92, end: 0.955, label: '07 / Completion', title: 'From Frame\nTo Facility.', copy: 'The complete industrial structure\ntakes its final form.' }
+    { start: 0.14, holdStart: 0.16, holdEnd: 0.25, end: 0.27, label: '01 / Foundation', title: 'Every Structure\nStarts Here.', copy: 'Precision foundations establish\nthe geometry for everything above.' },
+    { start: 0.28, holdStart: 0.3, holdEnd: 0.38, end: 0.4, label: '02 / Columns', title: 'Steel Rises.', copy: 'Primary columns lock into\nthe foundation system.' },
+    { start: 0.41, holdStart: 0.43, holdEnd: 0.51, end: 0.53, label: '03 / Primary Frame', title: 'The Form Takes Shape.', copy: 'Columns and tapered rafters create\nthe repeating PEB portal frame.' },
+    { start: 0.54, holdStart: 0.56, holdEnd: 0.62, end: 0.64, label: '04 / Structural Grid', title: 'The System Connects.', copy: 'Purlins, girts and bracing connect\neach primary structural frame.' },
+    { start: 0.65, holdStart: 0.67, holdEnd: 0.73, end: 0.75, label: '05 / Scale', title: 'Engineered In Repetition.', copy: 'Every frame extends the structure,\ncreating strength through precision.' },
+    { start: 0.76, holdStart: 0.78, holdEnd: 0.84, end: 0.86, label: '06 / Envelope', title: 'The Structure\nCloses.', copy: 'Roofing and wall systems transform\nthe steel skeleton into architecture.' },
+    { start: 0.87, holdStart: 0.89, holdEnd: 0.92, end: 0.94, label: '07 / Completion', title: 'From Frame\nTo Facility.', copy: 'The complete industrial structure\ntakes its final form.' }
   ];
   const activeStage = stages.find((stage) => progress >= stage.start && progress <= stage.end);
 
