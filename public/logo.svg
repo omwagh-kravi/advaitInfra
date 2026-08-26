@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 58" role="img" aria-labelledby="title">
+  <title id="title">Advait Infra logo</title>
+  <g fill="none" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 48h54M15 48V27l16-12 23 12v21"/>
+    <path d="M15 27h39M26 48V28m16 20V28M11 22h43m-33-8h22m-27 8 12-8 26 8"/>
+    <path d="M39 14 51 8h17M67 8v40"/>
+  </g>
+  <text x="78" y="28" fill="#FFFFFF" font-family="Space Grotesk, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="1.5">ADVAIT</text>
+  <text x="78" y="45" fill="#1CA7E0" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="2">INFRA</text>
+</svg>
